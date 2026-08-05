@@ -5,4 +5,4 @@ compatibility_date = "2024-08-05"
 [[d1_databases]]
 binding = "DB"
 database_name = "db-puntos"
-database_id = "TU_DATABASE_ID_AQUI"
+database_id = "2203fa30-c15d-4cee-815e-10bd356f1f07"
