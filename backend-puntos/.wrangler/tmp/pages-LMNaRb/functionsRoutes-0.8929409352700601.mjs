@@ -4,7 +4,6 @@ import { onRequestGet as __api_logs_js_onRequestGet } from "C:\\Users\\aleja\\De
 import { onRequestPatch as __api_points_js_onRequestPatch } from "C:\\Users\\aleja\\Desktop\\Proyectos\\CampamentoPuntos\\backend-puntos\\functions\\api\\points.js"
 import { onRequestGet as __api_teams_js_onRequestGet } from "C:\\Users\\aleja\\Desktop\\Proyectos\\CampamentoPuntos\\backend-puntos\\functions\\api\\teams.js"
 import { onRequestPost as __api_teams_js_onRequestPost } from "C:\\Users\\aleja\\Desktop\\Proyectos\\CampamentoPuntos\\backend-puntos\\functions\\api\\teams.js"
-import { onRequest as ___middleware_js_onRequest } from "C:\\Users\\aleja\\Desktop\\Proyectos\\CampamentoPuntos\\backend-puntos\\functions\\_middleware.js"
 
 export const routes = [
     {
@@ -48,12 +47,5 @@ export const routes = [
       method: "POST",
       middlewares: [],
       modules: [__api_teams_js_onRequestPost],
-    },
-  {
-      routePath: "/",
-      mountPath: "/",
-      method: "",
-      middlewares: [___middleware_js_onRequest],
-      modules: [],
     },
   ]
