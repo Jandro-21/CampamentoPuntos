@@ -1,30 +1,28 @@
 export const onRequest = async (context) => {
-  // 1. Responder de inmediato al preflight del navegador con un OK (204)
+  // Permitir de forma abierta cualquier pre-vuelo (OPTIONS)
   if (context.request.method === "OPTIONS") {
     return new Response(null, {
-      status: 204,
+      status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Headers": "*", // Permitir cualquier cabecera inyectada
       },
     });
   }
 
   try {
-    // 2. Ejecutar la petición normal de la API
     const response = await context.next();
     const corsResponse = new Response(response.body, response);
     
-    // Inyectar cabeceras CORS a la respuesta
+    // Inyectar CORS abiertos en todas las respuestas
     corsResponse.headers.set("Access-Control-Allow-Origin", "*");
     corsResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
-    corsResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    corsResponse.headers.set("Access-Control-Allow-Headers", "*");
     
     return corsResponse;
   } catch (error) {
-    // 3. Capturar cualquier error interno devolviendo CORS para que el front lo lea
-    return new Response(JSON.stringify({ error: "Error interno del servidor", detalle: error.message }), {
+    return new Response(JSON.stringify({ error: "Error interno", detalle: error.message }), {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",

@@ -29,9 +29,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../.wrangler/tmp/bundle-54vyZX/checked-fetch.js
+// ../.wrangler/tmp/bundle-2KD2DT/checked-fetch.js
 var require_checked_fetch = __commonJS({
-  "../.wrangler/tmp/bundle-54vyZX/checked-fetch.js"() {
+  "../.wrangler/tmp/bundle-2KD2DT/checked-fetch.js"() {
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
       const url = request instanceof URL ? request : new URL(
@@ -141,11 +141,12 @@ var import_checked_fetch6 = __toESM(require_checked_fetch());
 var onRequest = /* @__PURE__ */ __name(async (context) => {
   if (context.request.method === "OPTIONS") {
     return new Response(null, {
-      status: 204,
+      status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
+        "Access-Control-Allow-Headers": "*"
+        // Permitir cualquier cabecera inyectada
       }
     });
   }
@@ -154,10 +155,10 @@ var onRequest = /* @__PURE__ */ __name(async (context) => {
     const corsResponse = new Response(response.body, response);
     corsResponse.headers.set("Access-Control-Allow-Origin", "*");
     corsResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
-    corsResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    corsResponse.headers.set("Access-Control-Allow-Headers", "*");
     return corsResponse;
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Error interno del servidor", detalle: error.message }), {
+    return new Response(JSON.stringify({ error: "Error interno", detalle: error.message }), {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -220,10 +221,10 @@ var routes = [
   }
 ];
 
-// ../.wrangler/tmp/bundle-54vyZX/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-2KD2DT/middleware-loader.entry.ts
 var import_checked_fetch13 = __toESM(require_checked_fetch());
 
-// ../.wrangler/tmp/bundle-54vyZX/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-2KD2DT/middleware-insertion-facade.js
 var import_checked_fetch11 = __toESM(require_checked_fetch());
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/templates/pages-template-worker.ts
@@ -725,7 +726,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-54vyZX/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-2KD2DT/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -758,7 +759,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-54vyZX/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-2KD2DT/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

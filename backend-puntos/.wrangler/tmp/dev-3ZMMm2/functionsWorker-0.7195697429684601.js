@@ -101,7 +101,7 @@ var __toESM2 = /* @__PURE__ */ __name((mod, isNodeMode, target) => (target = mod
   mod
 )), "__toESM");
 var require_checked_fetch2 = __commonJS2({
-  "../.wrangler/tmp/bundle-54vyZX/checked-fetch.js"() {
+  "../.wrangler/tmp/bundle-2KD2DT/checked-fetch.js"() {
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
       const url = request instanceof URL ? request : new URL(
@@ -206,11 +206,12 @@ var import_checked_fetch6 = __toESM2(require_checked_fetch2());
 var onRequest = /* @__PURE__ */ __name2(async (context) => {
   if (context.request.method === "OPTIONS") {
     return new Response(null, {
-      status: 204,
+      status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type"
+        "Access-Control-Allow-Headers": "*"
+        // Permitir cualquier cabecera inyectada
       }
     });
   }
@@ -219,10 +220,10 @@ var onRequest = /* @__PURE__ */ __name2(async (context) => {
     const corsResponse = new Response(response.body, response);
     corsResponse.headers.set("Access-Control-Allow-Origin", "*");
     corsResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
-    corsResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    corsResponse.headers.set("Access-Control-Allow-Headers", "*");
     return corsResponse;
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Error interno del servidor", detalle: error.message }), {
+    return new Response(JSON.stringify({ error: "Error interno", detalle: error.message }), {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
