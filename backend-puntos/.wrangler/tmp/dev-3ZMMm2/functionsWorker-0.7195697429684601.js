@@ -60,13 +60,13 @@ var require_checked_fetch = __commonJS({
 });
 
 // .wrangler/tmp/bundle-srqF6j/middleware-loader.entry.ts
-var import_checked_fetch18 = __toESM(require_checked_fetch());
+var import_checked_fetch17 = __toESM(require_checked_fetch());
 
 // wrangler-modules-watch:wrangler:modules-watch
 var import_checked_fetch = __toESM(require_checked_fetch());
 
 // .wrangler/tmp/bundle-srqF6j/middleware-insertion-facade.js
-var import_checked_fetch16 = __toESM(require_checked_fetch());
+var import_checked_fetch15 = __toESM(require_checked_fetch());
 
 // .wrangler/tmp/pages-LMNaRb/functionsWorker-0.7195697429684601.mjs
 var import_checked_fetch2 = __toESM(require_checked_fetch(), 1);
@@ -101,7 +101,7 @@ var __toESM2 = /* @__PURE__ */ __name((mod, isNodeMode, target) => (target = mod
   mod
 )), "__toESM");
 var require_checked_fetch2 = __commonJS2({
-  "../.wrangler/tmp/bundle-Q1K4SA/checked-fetch.js"() {
+  "../.wrangler/tmp/bundle-QrhVvC/checked-fetch.js"() {
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
       const url = request instanceof URL ? request : new URL(
@@ -148,15 +148,39 @@ async function onRequestDelete(context) {
 __name(onRequestDelete, "onRequestDelete");
 __name2(onRequestDelete, "onRequestDelete");
 var import_checked_fetch22 = __toESM2(require_checked_fetch2());
+async function onRequestOptions() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "*"
+    }
+  });
+}
+__name(onRequestOptions, "onRequestOptions");
+__name2(onRequestOptions, "onRequestOptions");
 async function onRequestPost(context) {
-  const { username, password } = await context.request.json();
-  const { results } = await context.env.DB.prepare(
-    "SELECT * FROM users WHERE username = ? AND password = ?"
-  ).bind(username, password).all();
-  if (results.length > 0) {
-    return new Response(JSON.stringify({ token: "admin-token", monitor: results[0].username }), { status: 200 });
+  try {
+    const { username, password } = await context.request.json();
+    const db = context.env.DB;
+    const responseData = { success: true, message: "Login correcto" };
+    return new Response(JSON.stringify(responseData), {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      }
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
+      }
+    });
   }
-  return new Response(JSON.stringify({ error: "No autorizado" }), { status: 401 });
 }
 __name(onRequestPost, "onRequestPost");
 __name2(onRequestPost, "onRequestPost");
@@ -202,25 +226,6 @@ async function onRequestPost2(context) {
 }
 __name(onRequestPost2, "onRequestPost2");
 __name2(onRequestPost2, "onRequestPost");
-var import_checked_fetch6 = __toESM2(require_checked_fetch2());
-var onRequest = /* @__PURE__ */ __name2(async (context) => {
-  if (context.request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "*"
-      }
-    });
-  }
-  const response = await context.next();
-  const newResponse = new Response(response.body, response);
-  newResponse.headers.set("Access-Control-Allow-Origin", "*");
-  newResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  newResponse.headers.set("Access-Control-Allow-Headers", "*");
-  return newResponse;
-}, "onRequest");
 var routes = [
   {
     routePath: "/api/teams/:id",
@@ -228,6 +233,13 @@ var routes = [
     method: "DELETE",
     middlewares: [],
     modules: [onRequestDelete]
+  },
+  {
+    routePath: "/api/login",
+    mountPath: "/api",
+    method: "OPTIONS",
+    middlewares: [],
+    modules: [onRequestOptions]
   },
   {
     routePath: "/api/login",
@@ -263,19 +275,12 @@ var routes = [
     method: "POST",
     middlewares: [],
     modules: [onRequestPost2]
-  },
-  {
-    routePath: "/",
-    mountPath: "/",
-    method: "",
-    middlewares: [onRequest],
-    modules: []
   }
 ];
-var import_checked_fetch13 = __toESM2(require_checked_fetch2());
-var import_checked_fetch11 = __toESM2(require_checked_fetch2());
-var import_checked_fetch8 = __toESM2(require_checked_fetch2());
+var import_checked_fetch12 = __toESM2(require_checked_fetch2());
+var import_checked_fetch10 = __toESM2(require_checked_fetch2());
 var import_checked_fetch7 = __toESM2(require_checked_fetch2());
+var import_checked_fetch6 = __toESM2(require_checked_fetch2());
 function lexer(str) {
   var tokens = [];
   var i = 0;
@@ -730,7 +735,7 @@ var cloneResponse = /* @__PURE__ */ __name2((response) => (
     response
   )
 ), "cloneResponse");
-var import_checked_fetch9 = __toESM2(require_checked_fetch2());
+var import_checked_fetch8 = __toESM2(require_checked_fetch2());
 var drainBody = /* @__PURE__ */ __name2(async (request, env, _ctx, middlewareCtx) => {
   try {
     return await middlewareCtx.next(request, env);
@@ -747,7 +752,7 @@ var drainBody = /* @__PURE__ */ __name2(async (request, env, _ctx, middlewareCtx
   }
 }, "drainBody");
 var middleware_ensure_req_body_drained_default = drainBody;
-var import_checked_fetch10 = __toESM2(require_checked_fetch2());
+var import_checked_fetch9 = __toESM2(require_checked_fetch2());
 function reduceError(e) {
   return {
     name: e?.name,
@@ -781,7 +786,7 @@ var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_miniflare3_json_error_default
 ];
 var middleware_insertion_facade_default = pages_template_worker_default;
-var import_checked_fetch12 = __toESM2(require_checked_fetch2());
+var import_checked_fetch11 = __toESM2(require_checked_fetch2());
 var __facade_middleware__ = [];
 function __facade_register__(...args) {
   __facade_middleware__.push(...args.flat());
@@ -912,7 +917,7 @@ if (typeof middleware_insertion_facade_default === "object") {
 var middleware_loader_entry_default = WRAPPED_ENTRY;
 
 // ../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
-var import_checked_fetch14 = __toESM(require_checked_fetch());
+var import_checked_fetch13 = __toESM(require_checked_fetch());
 var drainBody2 = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
   try {
     return await middlewareCtx.next(request, env);
@@ -931,7 +936,7 @@ var drainBody2 = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx
 var middleware_ensure_req_body_drained_default2 = drainBody2;
 
 // ../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
-var import_checked_fetch15 = __toESM(require_checked_fetch());
+var import_checked_fetch14 = __toESM(require_checked_fetch());
 function reduceError2(e) {
   return {
     name: e?.name,
@@ -968,7 +973,7 @@ var __INTERNAL_WRANGLER_MIDDLEWARE__2 = [
 var middleware_insertion_facade_default2 = middleware_loader_entry_default;
 
 // ../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/common.ts
-var import_checked_fetch17 = __toESM(require_checked_fetch());
+var import_checked_fetch16 = __toESM(require_checked_fetch());
 var __facade_middleware__2 = [];
 function __facade_register__2(...args) {
   __facade_middleware__2.push(...args.flat());
