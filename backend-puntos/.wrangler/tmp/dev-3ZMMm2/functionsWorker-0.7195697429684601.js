@@ -101,7 +101,7 @@ var __toESM2 = /* @__PURE__ */ __name((mod, isNodeMode, target) => (target = mod
   mod
 )), "__toESM");
 var require_checked_fetch2 = __commonJS2({
-  "../.wrangler/tmp/bundle-lFvAGG/checked-fetch.js"() {
+  "../.wrangler/tmp/bundle-54vyZX/checked-fetch.js"() {
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
       const url = request instanceof URL ? request : new URL(
@@ -209,7 +209,7 @@ var onRequest = /* @__PURE__ */ __name2(async (context) => {
       status: 204,
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, OPTIONS",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type"
       }
     });
@@ -218,7 +218,7 @@ var onRequest = /* @__PURE__ */ __name2(async (context) => {
     const response = await context.next();
     const corsResponse = new Response(response.body, response);
     corsResponse.headers.set("Access-Control-Allow-Origin", "*");
-    corsResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
+    corsResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
     corsResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
     return corsResponse;
   } catch (error) {
