@@ -29,9 +29,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../.wrangler/tmp/bundle-sPNmzp/checked-fetch.js
+// ../.wrangler/tmp/bundle-Q1K4SA/checked-fetch.js
 var require_checked_fetch = __commonJS({
-  "../.wrangler/tmp/bundle-sPNmzp/checked-fetch.js"() {
+  "../.wrangler/tmp/bundle-Q1K4SA/checked-fetch.js"() {
     var urls = /* @__PURE__ */ new Set();
     function checkURL(request, init) {
       const url = request instanceof URL ? request : new URL(
@@ -136,6 +136,27 @@ async function onRequestPost2(context) {
 }
 __name(onRequestPost2, "onRequestPost");
 
+// _middleware.js
+var import_checked_fetch6 = __toESM(require_checked_fetch());
+var onRequest = /* @__PURE__ */ __name(async (context) => {
+  if (context.request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "*"
+      }
+    });
+  }
+  const response = await context.next();
+  const newResponse = new Response(response.body, response);
+  newResponse.headers.set("Access-Control-Allow-Origin", "*");
+  newResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  newResponse.headers.set("Access-Control-Allow-Headers", "*");
+  return newResponse;
+}, "onRequest");
+
 // ../.wrangler/tmp/pages-LMNaRb/functionsRoutes-0.8929409352700601.mjs
 var routes = [
   {
@@ -179,20 +200,27 @@ var routes = [
     method: "POST",
     middlewares: [],
     modules: [onRequestPost2]
+  },
+  {
+    routePath: "/",
+    mountPath: "/",
+    method: "",
+    middlewares: [onRequest],
+    modules: []
   }
 ];
 
-// ../.wrangler/tmp/bundle-sPNmzp/middleware-loader.entry.ts
-var import_checked_fetch12 = __toESM(require_checked_fetch());
+// ../.wrangler/tmp/bundle-Q1K4SA/middleware-loader.entry.ts
+var import_checked_fetch13 = __toESM(require_checked_fetch());
 
-// ../.wrangler/tmp/bundle-sPNmzp/middleware-insertion-facade.js
-var import_checked_fetch10 = __toESM(require_checked_fetch());
+// ../.wrangler/tmp/bundle-Q1K4SA/middleware-insertion-facade.js
+var import_checked_fetch11 = __toESM(require_checked_fetch());
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/templates/pages-template-worker.ts
-var import_checked_fetch7 = __toESM(require_checked_fetch());
+var import_checked_fetch8 = __toESM(require_checked_fetch());
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/node_modules/path-to-regexp/dist.es2015/index.js
-var import_checked_fetch6 = __toESM(require_checked_fetch());
+var import_checked_fetch7 = __toESM(require_checked_fetch());
 function lexer(str) {
   var tokens = [];
   var i = 0;
@@ -639,7 +667,7 @@ var cloneResponse = /* @__PURE__ */ __name((response) => (
 ), "cloneResponse");
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-ensure-req-body-drained.ts
-var import_checked_fetch8 = __toESM(require_checked_fetch());
+var import_checked_fetch9 = __toESM(require_checked_fetch());
 var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx) => {
   try {
     return await middlewareCtx.next(request, env);
@@ -658,7 +686,7 @@ var drainBody = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 var middleware_ensure_req_body_drained_default = drainBody;
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/middleware-miniflare3-json-error.ts
-var import_checked_fetch9 = __toESM(require_checked_fetch());
+var import_checked_fetch10 = __toESM(require_checked_fetch());
 function reduceError(e) {
   return {
     name: e?.name,
@@ -687,7 +715,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-sPNmzp/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-Q1K4SA/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -695,7 +723,7 @@ var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
 var middleware_insertion_facade_default = pages_template_worker_default;
 
 // ../../../../../AppData/Roaming/npm/node_modules/wrangler/templates/middleware/common.ts
-var import_checked_fetch11 = __toESM(require_checked_fetch());
+var import_checked_fetch12 = __toESM(require_checked_fetch());
 var __facade_middleware__ = [];
 function __facade_register__(...args) {
   __facade_middleware__.push(...args.flat());
@@ -720,7 +748,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-sPNmzp/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-Q1K4SA/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
