@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // Recuerda cambiar esto por la URL de tu backend en Cloudflare cuando despliegues
-const API_URL = 'https://5e3b3198.campamentopuntos.pages.dev/api'; 
+const API_URL = 'https://campamentopuntos.pages.dev/api'; 
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
