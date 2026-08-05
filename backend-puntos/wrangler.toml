@@ -1,0 +1,8 @@
+name = "backend-puntos"
+pages_build_output_dir = "public"
+compatibility_date = "2024-08-05"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "db-puntos"
+database_id = "TU_DATABASE_ID_AQUI"

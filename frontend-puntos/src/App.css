@@ -1,0 +1,342 @@
+:root {
+  /* Variables Modo Claro */
+  --bg-app: #f1f5f9;
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  --primary-btn-bg: #0f172a;
+  --primary-btn-text: #ffffff;
+  --secondary-btn-bg: #f8fafc;
+  --secondary-btn-text: #0f172a;
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --input-border: #cbd5e1;
+  
+  --color-azul: #3b82f6;
+  --color-rojo: #ef4444;
+  --color-amarillo: #f59e0b;
+  --color-verde: #10b981;
+  --btn-icon-bg: #f1f5f9;
+}
+
+/* Variables Modo Oscuro */
+body.dark-mode {
+  --bg-app: #0a101f;
+  --text-main: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --glass-bg: rgba(17, 24, 39, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  
+  --primary-btn-bg: #f1f5f9;
+  --primary-btn-text: #0f172a;
+  --secondary-btn-bg: #1e293b;
+  --secondary-btn-text: #f1f5f9;
+  --input-bg: rgba(17, 24, 39, 0.8);
+  --input-border: #334155;
+  
+  --btn-icon-bg: #1e293b;
+}
+
+/* Base y fondo general para el efecto glass */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+main {
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-container {
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Efecto Glassmorphism */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+/* Cabecera */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.2rem 0;
+  font-size: 1.4rem;
+}
+
+.monitor-badge {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+@media (min-width: 480px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-controls {
+    justify-content: flex-end;
+  }
+}
+
+/* Interruptor Modo Oscuro */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.theme-toggle input { display: none; }
+
+.slider {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  background-color: #cbd5e1;
+  border-radius: 20px;
+  transition: .3s;
+}
+
+body.dark-mode .slider {
+  background-color: var(--color-verde);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .3s;
+}
+
+.theme-toggle input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+/* Formularios */
+.form-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  padding-left: 0.5rem;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+input, select {
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-main);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+input:focus, select:focus {
+  border-color: var(--color-azul);
+}
+
+/* Botones */
+button {
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+button:active { transform: scale(0.97); }
+
+.primary-btn {
+  background-color: var(--primary-btn-bg);
+  color: var(--primary-btn-text);
+}
+
+.secondary-btn {
+  background-color: var(--secondary-btn-bg);
+  color: var(--secondary-btn-text);
+  font-size: 0.9rem;
+  padding: 0.7rem 1rem;
+}
+
+/* Tarjetas de Equipos */
+.teams-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.team-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-top-width: 6px;
+}
+
+.team-card h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.points-display {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.point-controls {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.btn-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--btn-icon-bg);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+  font-weight: 300;
+}
+
+/* Bordes y textos dinámicos por color */
+.border-azul { border-top-color: var(--color-azul); box-shadow: 0 4px 10px rgba(59, 130, 246, 0.15); }
+.border-rojo { border-top-color: var(--color-rojo); box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15); }
+.border-amarillo { border-top-color: var(--color-amarillo); box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15); }
+.border-verde { border-top-color: var(--color-verde); box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15); }
+
+.text-azul { color: var(--color-azul); font-weight: bold; }
+.text-rojo { color: var(--color-rojo); font-weight: bold; }
+.text-amarillo { color: var(--color-amarillo); font-weight: bold; }
+.text-verde { color: var(--color-verde); font-weight: bold; }
+
+/* Sección de Registro (Logs) */
+.logs-section {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.logs-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.logs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.log-item {
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.6rem;
+  color: var(--text-main);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.no-logs {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Asegurar que la tarjeta sea la referencia para el botón absoluto */
+.team-card {
+  position: relative; 
+}
+
+/* Estilos del botón de eliminar (Solo visible para Alejandro) */
+.btn-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-rojo);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.btn-delete:hover, .btn-delete:active {
+  background-color: var(--color-rojo);
+  color: #ffffff;
+  transform: scale(0.95);
+}
