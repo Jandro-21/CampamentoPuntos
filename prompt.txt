@@ -1,0 +1,24 @@
+Por favor, genérame una aplicación web completa en React (con un único archivo o estructura limpia de componentes) utilizando Firebase (Authentication y Firestore) para gestionar las puntuaciones, equipos y miembros de un campamento de verano en tiempo real entre varios monitores.
+
+Debe cumplir estrictamente con los siguientes requisitos:
+
+1. **Autenticación:**
+   - Sistema de login básico con correo y contraseña (para los monitores, incluyendo un usuario específico: `alejandro`).
+   - Si no se ha iniciado sesión, se muestra el formulario de acceso. Si se está logueado, se muestra el Dashboard principal.
+
+2. **Gestión de Equipos y Miembros:**
+   - Visualización de la lista de equipos sincronizada en tiempo real mediante Firestore (`onSnapshot`).
+   - Dentro de cada equipo, se debe poder ver la lista de sus integrantes, así como **añadir nuevas personas** mediante un input de texto rápido.
+   - **Restricción de permisos (Roles / Control de borrado):** Solo el usuario cuyo correo sea (o contenga) `alejandro` tendrá permisos para **eliminar equipos** o **eliminar personas** de los equipos. Para el resto de usuarios, estos botones de borrado deben estar ocultos o deshabilitados para evitar que los monitores más competitivos borren cosas por error o malicia.
+
+3. **Dashboard de Puntuaciones en Tiempo Real:**
+   - Cada equipo muestra su nombre, sus miembros y sus puntos actuales.
+   - Botones de acción rápida para sumar o restar puntos (-1, +1, +5) a cada equipo.
+
+4. **Muro de Actividad / Log Integrado ("El Chivato"):**
+   - Justo debajo de los equipos, en la misma pantalla (sin cambiar de pestañas), debe haber un feed o muro que muestre en tiempo real los últimos movimientos registrados (los últimos 10 cambios ordenados por fecha).
+   - Cada entrada del log debe mostrar claramente: la hora, el email del monitor que hizo el cambio, el equipo afectado y la cantidad modificada (ej. `[12:15] monitor@camp.com modificó al equipo Rojo (+1)`).
+   - Al pulsar cualquier botón de puntos, además de actualizar el marcador del equipo, se debe añadir un documento nuevo a una colección de Firestore llamada `historial` incluyendo un `serverTimestamp()`.
+
+5. **Estilo y Despliegue:**
+   - Código limpio, funcional, estructurado con React moderno (hooks `useState`, `useEffect`) y listo para ser desplegado instantáneamente en Vercel sin dolores de cabeza de servidores ni CORS.
